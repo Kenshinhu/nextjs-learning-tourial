@@ -14,12 +14,16 @@ export async function fetchRevenue() {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    const randomSeconds = Math.floor(Math.random() * 5) + 1;
+    const randomMilliseconds = randomSeconds * 1000;
+    await new Promise((resolve) => setTimeout(resolve, randomMilliseconds));
+
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
+    console.log(`data: ${JSON.stringify(data)}`);
 
     return data.rows;
   } catch (error) {
@@ -29,6 +33,13 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestInvoices() {
+  
+  const randomSeconds = Math.floor(Math.random() * 5) + 1;
+  const randomMilliseconds = randomSeconds * 1000;
+
+  await new Promise((resolve) => setTimeout(resolve, randomMilliseconds));
+
+
   try {
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -49,6 +60,12 @@ export async function fetchLatestInvoices() {
 }
 
 export async function fetchCardData() {
+  const randomSeconds = Math.floor(Math.random() * 5) + 1;
+  const randomMilliseconds = randomSeconds * 1000;
+
+  await new Promise((resolve) => setTimeout(resolve, randomMilliseconds));
+
+
   try {
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
@@ -141,6 +158,8 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchInvoiceById(id: string) {
+
+  
   try {
     const data = await sql<InvoiceForm>`
       SELECT

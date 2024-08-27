@@ -2,6 +2,7 @@ import '@/app/ui/global.css'
 import { inter } from '@/app/ui/fonts'
 import AcmeLogo from './ui/acme-logo';
 
+
 export default function RootLayout({
   children,
 }: {
